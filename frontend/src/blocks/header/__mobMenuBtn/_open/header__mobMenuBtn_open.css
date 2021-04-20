@@ -1,0 +1,18 @@
+
+
+.header__mobMenuBtn_open {
+    display: block;
+    width: 30px;
+    height: 30px;
+background-image: url("../../../../images/svg/icon+.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    transform: rotate(45deg);
+    bottom: 25px;
+    right: 28px;
+}
+
+
+

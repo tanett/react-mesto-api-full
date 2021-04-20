@@ -1,0 +1,13 @@
+.header__link_signOut {
+    margin-left: 24px;
+    color: #A9A9A9;
+
+}
+
+@media screen and (max-width: 500px) {
+    .header__link_signOut {
+        margin-left: 0;
+align-self: center;
+
+    }
+}

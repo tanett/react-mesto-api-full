@@ -1,0 +1,7 @@
+
+@media screen and (max-width: 430px) {
+    .popup__close-button_InfoTooltip {
+
+        right: 120px;
+    }
+}

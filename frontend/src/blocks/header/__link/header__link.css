@@ -1,0 +1,18 @@
+.header__link {
+    align-self: baseline;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    color: white;
+}
+
+.header__link:hover, .header__link:active, .header__link:focus {
+    opacity: 0.6;
+}
+/*@media screen and (max-width: 500px) {*/
+/*    .header__link{*/
+/*        font-size: 14px;*/
+/*        line-height: 17px;*/
+/*    }*/
+/*}*/

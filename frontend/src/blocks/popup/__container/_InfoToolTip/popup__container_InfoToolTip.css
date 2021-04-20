@@ -1,0 +1,11 @@
+.popup__container_InfoTooltip {
+    min-width: 430px;
+    padding: 60px 36px;
+}
+
+@media screen and (max-width: 500px) {
+    .popup__container_InfoTooltip {
+        min-width: 280px;
+        padding: 50px 18px;
+    }
+}

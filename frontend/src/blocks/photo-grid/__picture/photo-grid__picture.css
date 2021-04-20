@@ -1,0 +1,13 @@
+.photo-grid__picture {
+	margin: 0 auto;
+	padding: 0;
+	width: 282px;
+	height: 282px;
+	object-position: center;
+	object-fit: cover;
+	transition: .5s ease-in-out;
+
+}
+.photo-grid__picture:hover {
+	transform: scale(1.05);
+}

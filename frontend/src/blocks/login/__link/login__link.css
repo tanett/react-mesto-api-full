@@ -1,0 +1,8 @@
+.login__link {
+    text-decoration: none;
+    color: inherit;
+}
+.login__link:hover, .login__link:active,.login__link:focus {
+    cursor: pointer;
+    opacity: 0.6;
+}

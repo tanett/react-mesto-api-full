@@ -1,0 +1,11 @@
+.header__userWrap {
+    display: flex;
+    align-items: flex-start;
+}
+@media screen and (max-width: 500px) {
+    .header__userWrap {
+        display: none;
+        opacity: 0;
+
+    }
+}

@@ -1,0 +1,26 @@
+.popup__input {
+	display: block;
+	width: 100%;
+	margin: 29px 0 0 0;
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0, 0.2);
+	box-sizing: border-box;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.popup__input::placeholder {
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 17px;
+	color: #C4C4C4;
+}
+
+.popup__input:hover, .popup__input:focus {
+	cursor: auto;
+}
+
+/*.popup__input:invalid {*/
+/*	border-bottom: 1px solid rgba(255,0,0, 0.2);*/
+/*}*/

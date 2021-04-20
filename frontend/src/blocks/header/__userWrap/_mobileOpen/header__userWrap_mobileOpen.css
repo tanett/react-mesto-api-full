@@ -1,0 +1,7 @@
+.header__userWrap_mobileOpen {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    margin: 40px auto;
+}
