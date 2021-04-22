@@ -7,6 +7,7 @@ export const register = (email, passw) => {
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "http://mesto.full.nomoredomains.monster",
         },
+        credentials: "include",
         body: JSON.stringify({
             'email': email,
             "password": passw
@@ -28,6 +29,7 @@ export const authorize = (login, password) => {
         headers: {
             "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({'email': login,
             "password": password})
         }
@@ -44,6 +46,7 @@ export const authorize = (login, password) => {
 export const checkToken = (token) => {
     return fetch(`${AUTH_URL}/users/me`, {
         method: 'GET',
+        credentials: "include",
         headers: {
 
             'Content-Type': 'application/json',
