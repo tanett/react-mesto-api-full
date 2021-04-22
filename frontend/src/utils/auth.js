@@ -1,4 +1,4 @@
-export const AUTH_URL = 'https://auth.nomoreparties.co';
+export const AUTH_URL = 'https://mesto.full.nomoredomains.monster';
 
 export const register = (email, passw) => {
     return fetch(`${AUTH_URL}/signup`, {
