@@ -20,7 +20,7 @@ function Login(props) {
         e.preventDefault();
         if(!userEmail || !password) {return}
         props.isLogin(userEmail,password).then(data=>{
-            if(data.token){
+            if(data.cookie.jwt){
                 setUserEmail('');
                 setPassword('');
                 history.push('/');
