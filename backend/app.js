@@ -25,6 +25,7 @@ const corsOptions = {
     'http://mesto.full.nomoredomains.monster',
     'https://api.mesto.full.nomoredomains.icu',
     'https://api.mesto.full.nomoredomains.icu',
+    'http://localhost:3000',
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowHeaders: ['Origin', 'X-requested-With', 'Content-Type', 'Accept', 'Authorization'],
