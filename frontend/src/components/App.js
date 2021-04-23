@@ -90,7 +90,7 @@ function App() {
         return auth.authorize(login, password)
             .then(data => {
                 console.log(data);
-                if (!data.cookie.jwt) {
+                if (!document.cookie.jwt) {
                     setMessageToolTip({failure:data.message});
                     console.log(messageToolTip);
                     setResRegistration(false);
