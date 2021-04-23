@@ -26,6 +26,8 @@ const corsOptions = {
     'https://api.mesto.full.nomoredomains.icu',
     'https://api.mesto.full.nomoredomains.icu',
   ],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowHeaders: ['Origin', 'X-requested-With', 'Content-Type', 'Accept', 'Authorization'],
   credentials: true,
 };
 app.use(cors(corsOptions));
