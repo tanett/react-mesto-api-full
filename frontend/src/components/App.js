@@ -90,7 +90,7 @@ function App() {
         return auth.authorize(login, password)
             .then(data => {
                 console.log(data);
-                if (!document.cookie.jwt) {
+                if (!data.token) {
                     setMessageToolTip({failure:data.message});
                     console.log(messageToolTip);
                     setResRegistration(false);
@@ -110,27 +110,18 @@ function App() {
     }
 
     function handleTokenCheck() {
-        // if (localStorage.getItem('jwt')) {
-        //     const jwt = localStorage.getItem('jwt');
-        //     auth.checkToken(jwt).then(
-        //         res => {
-        //             console.log(res);
-        //             setUserEmail(res.data.email);
-        //             setLoggedIn(true);
-        //             history.push('/')
-        //         }
-        //     ).catch(err => console.log(err))
-        // }
-        if (document.cookie.jwt) {
-            auth.checkToken().then(
-                res => {
-                    console.log(res);
-                              setUserEmail(res.data.email);
-                               setLoggedIn(true);
-                              history.push('/')
+         if (localStorage.getItem('jwt')) {
+             const jwt = localStorage.getItem('jwt');
+            auth.checkToken(jwt).then(
+                 res => {
+                   console.log(res);
+                    setUserEmail(res.data.email);
+                    setLoggedIn(true);
+                   history.push('/')
                 }
-            )
-        }
+            ).catch(err => console.log(err))
+         }
+
 
     }
 

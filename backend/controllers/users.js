@@ -89,8 +89,7 @@ const createUser = (req, res, next) => {
         const error = new Error('Такой емайл уже зарегестрирован');
         error.statusCode = 409;
         next(error);
-      } else
-      if (err.name === 'ValidationError') {
+      } else if (err.name === 'ValidationError') {
         next(new NotValid('Невалидные данные'));
       } else {
         next(err);
@@ -105,18 +104,18 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key',
         { expiresIn: '7d' });
-
-      User.findOne({ _id: user._id })
-        .then((userNoPassword) => {
-          res
-            .cookie('jwt', token, {
-              maxAge: 3600000 * 24 * 7,
-              httpOnly: false,
-              sameSite: true,
-              credentials: true,
-            })
-            .send({ data: userNoPassword });
-        });
+      res.send({ token });
+      // User.findOne({ _id: user._id })
+      //   .then((userNoPassword) => {
+      //     res
+      //       .cookie('jwt', token, {
+      //         maxAge: 3600000 * 24 * 7,
+      //         httpOnly: false,
+      //         sameSite: true,
+      //         credentials: true,
+      //       })
+      //       .send({ data: userNoPassword });
+      //   });
     })
     .catch((err) => {
       if (err.message === 'Неправильные почта или пароль') {

@@ -13,8 +13,9 @@ const optionsApi = {
     baseUrl: 'https://api.mesto.full.nomoredomains.icu',
     headers: {
 
-        authorization: '47b6d590-a975-406b-afdb-480f171a6854',
-        "Content-Type": 'application/json'
+        authorization: '',
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
     }
 }
 

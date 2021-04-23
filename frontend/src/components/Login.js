@@ -22,7 +22,7 @@ function Login(props) {
         props.isLogin(userEmail,password).then(data=>{
             console.log(data);
             console.log(document.cookie);
-            if(document.cookie.jwt){
+            if(data.token){
                 setUserEmail('');
                 setPassword('');
                 history.push('/');

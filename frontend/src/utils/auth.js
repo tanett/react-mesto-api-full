@@ -1,64 +1,61 @@
 export const AUTH_URL = 'https://api.mesto.full.nomoredomains.icu';
 
 export const register = (email, passw) => {
-    return fetch(`${AUTH_URL}/signup`, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
+  return fetch(`${AUTH_URL}/signup`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
 
-        },
-        credentials: "include",
-        body: JSON.stringify({
-            'email': email,
-            "password": passw
-        })
-
-    }).then(res => {
-        return res.json()
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      'email': email,
+      "password": passw
     })
-        .then(res => {
-            console.log(res);
-            return res
-        })
+
+  }).then(res => {
+    return res.json()
+  })
+      .then(res => {
+        console.log(res);
+        return res
+      })
 
 }
 
 export const authorize = (login, password) => {
-    return fetch(`${AUTH_URL}/signin`, {
+  return fetch(`${AUTH_URL}/signin`, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         },
         credentials: "include",
-        body: JSON.stringify({'email': login,
-            "password": password})
-        }
-    ).then(res => res.json())
-        .then(res => {
-        //     if (res.token){
-        //         localStorage.setItem('jwt', res.token);
-        //         }
-        // return res
-        // }
-                console.log(document.cookie);
-            if(document.cookie.jwt) {
-                return res
+        body: JSON.stringify({
+          'email': login,
+          "password": password
+        })
+      }
+  ).then(res => res.json())
+      .then(res => {
+            if (res.token) {
+              localStorage.setItem('jwt', res.token);
             }
-            }
-        )
+            return res
+          }
+      )
 
 }
 
-export const checkToken = () => {
-    return fetch(`${AUTH_URL}/users/me`, {
-        method: 'GET',
-        credentials: "include",
-        headers: {
+export const checkToken = (token) => {
+  return fetch(`${AUTH_URL}/users/me`, {
+    method: 'GET',
+    credentials: "include",
+    headers: {
 
-            'Content-Type': 'application/json',
-           // 'Authorization': `Bearer ${token}`,
-        }
-    })
-        .then(res => res.json())
-        .then(data => data)
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    }
+  })
+      .then(res => res.json())
+      .then(data => data)
 }
