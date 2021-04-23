@@ -102,10 +102,11 @@ class Api {
     }
 
     likeOn(cardID) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+        return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
             method: 'PUT',
             headers: this._headers
         }).then(res => {
+            console.log(res);
             if (res.ok) {
                 return res.json();
             }
@@ -114,11 +115,12 @@ class Api {
     }
 
     likeOff(cardID) {
-        return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+        return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
             method: 'DELETE',
             headers: this._headers
         }).then(res => {
             if (res.ok) {
+                console.log(res);
                 return res.json();
             }
             return Promise.reject(`Ошибка: ${res.status}`);

@@ -59,7 +59,8 @@ function App() {
             handleTokenCheck();
             Promise.all([api.getInitialCards(), api.getUserInfo()]).then((data) => {
                 setCards(data[0]);
-                setCurrentUser(data[1])
+                console.log(data[1]);
+                setCurrentUser(data[1].user)
             })
                 .catch(err => console.log(err))
                 .finally(() => setClassPageLoad('visible'))
@@ -115,7 +116,7 @@ function App() {
             auth.checkToken(jwt).then(
                  res => {
                    console.log(res);
-                    setUserEmail(res.data.email);
+                    setUserEmail(res.user.email);
                     setLoggedIn(true);
                    history.push('/')
                 }
@@ -127,8 +128,11 @@ function App() {
 
     function handleCardLike(card) {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
+        console.log(isLiked);
+        console.log(card._id);
         api.changeLikeCardStatus(card._id, isLiked)
             .then(newCard => {
+                console.log(newCard);
                 const newCards = cards.map((c) => c._id === card._id ? newCard : c);
                 setCards(newCards);
             }).catch((err) => console.log(err));
@@ -193,7 +197,7 @@ function App() {
         setBtnLoader('Сохранение...');
         api.editUserInfo({name, about})
             .then((res) =>
-                setCurrentUser(res))
+                setCurrentUser(res.user))
                     .then(() => {
                         closeAllPopups();
                         setBtnLoader('Сохранить')
@@ -206,7 +210,7 @@ function App() {
     const handleUpdateAvatar = ({avatar}) => {
         setBtnLoader('Сохранение...');
         api.editUserAvatar({avatar}).then((res) => {
-            setCurrentUser(res);
+            setCurrentUser(res.user);
             closeAllPopups();
             setBtnLoader('Сохранить');
         })
