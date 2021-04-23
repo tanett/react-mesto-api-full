@@ -40,6 +40,7 @@ export const authorize = (login, password) => {
         //         }
         // return res
         // }
+                console.log(document.cookie);
             if(document.cookie.jwt) {
                 return res
             }
