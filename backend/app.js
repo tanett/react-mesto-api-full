@@ -19,7 +19,16 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 });
 
-app.use(cors());
+const corsOptions = {
+  origin: [
+    'https://mesto.full.nomoredomains.monster',
+    'http://mesto.full.nomoredomains.monster',
+    'https://api.mesto.full.nomoredomains.icu',
+    'https://api.mesto.full.nomoredomains.icu',
+  ],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 app.use(bodyParser.json());

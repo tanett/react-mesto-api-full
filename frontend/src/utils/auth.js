@@ -5,7 +5,7 @@ export const register = (email, passw) => {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "http://mesto.full.nomoredomains.monster",
+
         },
         credentials: "include",
         body: JSON.stringify({

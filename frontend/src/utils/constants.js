@@ -12,8 +12,8 @@ const config = {
 const optionsApi = {
     baseUrl: 'https://api.mesto.full.nomoredomains.icu',
     headers: {
-        "Access-Control-Allow-Origin": "http://mesto.full.nomoredomains.monster",
-        authorization: '47b6d590-a975-406b-afdb-480f171a6854',
+
+        //authorization: '47b6d590-a975-406b-afdb-480f171a6854',
         "Content-Type": 'application/json'
     }
 }
