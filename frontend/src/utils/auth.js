@@ -35,22 +35,27 @@ export const authorize = (login, password) => {
         }
     ).then(res => res.json())
         .then(res => {
-            if (res.token){
-                localStorage.setItem('jwt', res.token);
-                }
-        return res
-        })
+        //     if (res.token){
+        //         localStorage.setItem('jwt', res.token);
+        //         }
+        // return res
+        // }
+            if(document.cookie.jwt) {
+                return res
+            }
+            }
+        )
 
 }
 
-export const checkToken = (token) => {
+export const checkToken = () => {
     return fetch(`${AUTH_URL}/users/me`, {
         method: 'GET',
         credentials: "include",
         headers: {
 
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+           // 'Authorization': `Bearer ${token}`,
         }
     })
         .then(res => res.json())

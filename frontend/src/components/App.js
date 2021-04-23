@@ -110,16 +110,26 @@ function App() {
     }
 
     function handleTokenCheck() {
-        if (localStorage.getItem('jwt')) {
-            const jwt = localStorage.getItem('jwt');
-            auth.checkToken(jwt).then(
+        // if (localStorage.getItem('jwt')) {
+        //     const jwt = localStorage.getItem('jwt');
+        //     auth.checkToken(jwt).then(
+        //         res => {
+        //             console.log(res);
+        //             setUserEmail(res.data.email);
+        //             setLoggedIn(true);
+        //             history.push('/')
+        //         }
+        //     ).catch(err => console.log(err))
+        // }
+        if (document.cookie.jwt) {
+            auth.checkToken().then(
                 res => {
                     console.log(res);
-                    setUserEmail(res.data.email);
-                    setLoggedIn(true);
-                    history.push('/')
+                              setUserEmail(res.data.email);
+                               setLoggedIn(true);
+                              history.push('/')
                 }
-            ).catch(err => console.log(err))
+            )
         }
 
     }
