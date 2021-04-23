@@ -3,7 +3,11 @@ import {optionsApi} from "./constants.js";
 class Api {
     constructor(options) {
         this._baseUrl = options.baseUrl;
-        this._headers = options.headers;
+        this._headers =  {
+            "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
+                "Content-Type": 'application/json',
+                "Accept": 'application/json',
+        };
     }
 
     getUserInfo() {

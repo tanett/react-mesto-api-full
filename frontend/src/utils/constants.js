@@ -12,8 +12,7 @@ const config = {
 const optionsApi = {
     baseUrl: 'https://api.mesto.full.nomoredomains.icu',
     headers: {
-
-        authorization: '',
+        // "Authorization": `Bearer ${localStorage.getItem('jwt')}`,
         "Content-Type": 'application/json',
         "Accept": 'application/json',
     }

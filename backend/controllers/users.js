@@ -44,7 +44,7 @@ const getUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь не найден');
       }
-      res.send({ data: user });
+      res.send({ user });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -82,7 +82,7 @@ const createUser = (req, res, next) => {
       password: hash,
     }))
     .then((user) => {
-      User.findOne({ _id: user._id }).then((userNoPassword) => res.send({ data: userNoPassword }));
+      User.findOne({ _id: user._id }).then((userNoPassword) => res.send({ userNoPassword }));
     })
     .catch((err) => {
       if (err.name === 'MongoError' && err.code === 11000) {
@@ -105,18 +105,8 @@ const login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key',
         { expiresIn: '7d' });
       res.send({ token });
-      // User.findOne({ _id: user._id })
-      //   .then((userNoPassword) => {
-      //     res
-      //       .cookie('jwt', token, {
-      //         maxAge: 3600000 * 24 * 7,
-      //         httpOnly: false,
-      //         sameSite: true,
-      //         credentials: true,
-      //       })
-      //       .send({ data: userNoPassword });
-      //   });
     })
+
     .catch((err) => {
       if (err.message === 'Неправильные почта или пароль') {
         next(new NotAuth(err.message));
@@ -135,7 +125,7 @@ const updateUser = (req, res, next) => {
     { new: true, runValidators: true })
     .orFail(() => new Error())
     .then((user) => {
-      res.status(200).send({ data: user });
+      res.status(200).send({ user });
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -156,7 +146,7 @@ const updateAvatar = (req, res, next) => {
     { avatar: req.body.avatar },
     { new: true, runValidators: true })
     .orFail(() => new Error())
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send({ user }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new NotValid(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));

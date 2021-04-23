@@ -10,7 +10,7 @@ const createCard = (req, res, next) => {
     next(new NotValid('Некорректные данные'));
   }
   const { name, link } = req.body;
-  Card.create({ name, link, owner: userId }).then((card) => res.send({ data: card }))
+  Card.create({ name, link, owner: userId }).then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new NotValid('Невалидные данные'));
@@ -21,7 +21,7 @@ const createCard = (req, res, next) => {
 };
 
 const getCards = (req, res, next) => {
-  Card.find({}).populate('owner').then((cards) => res.send({ data: cards }))
+  Card.find({}).populate('owner').then((cards) => res.send(cards))
     .catch(next);
 };
 

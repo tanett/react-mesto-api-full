@@ -21,7 +21,7 @@ function Login(props) {
         if(!userEmail || !password) {return}
         props.isLogin(userEmail,password).then(data=>{
             console.log(data);
-            console.log(document.cookie);
+
             if(data.token){
                 setUserEmail('');
                 setPassword('');

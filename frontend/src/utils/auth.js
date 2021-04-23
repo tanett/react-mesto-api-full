@@ -37,6 +37,7 @@ export const authorize = (login, password) => {
       }
   ).then(res => res.json())
       .then(res => {
+        console.log(res);
             if (res.token) {
               localStorage.setItem('jwt', res.token);
             }
