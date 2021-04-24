@@ -28,7 +28,7 @@ function handleEscClose(event) {
              onClick={onOverlayClose}>
             <div className="popup__container popup__container_InfoTooltip">
                 <div className={`popup__icon ${props.success ? "popup__icon_success" : "popup__icon_failure"}`}></div>
-                <p className="popup__textInfo">{ props.success ? props.message.success : props.message.failure }</p>
+                <p className="popup__textInfo">{ props.message }</p>
                 <button className="popup__close-button popup__close-button_InfoTooltip" type="button" title="Закрыть" onClick={props.onClose}></button>
             </div>
         </div>

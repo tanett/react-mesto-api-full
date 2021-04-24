@@ -48,7 +48,7 @@ function App() {
     const [btnLoader, setBtnLoader] = React.useState('Сохранить');
     const [loggedIn, setLoggedIn] = React.useState('');
     const [resRegistration, setResRegistration] = React.useState('');
-    const [messageToolTip, setMessageToolTip] = React.useState(toolTipMessage);
+    const [messageToolTip, setMessageToolTip] = React.useState('');
     const [userEmail, setUserEmail] = React.useState('');
 
     const history = useHistory();
@@ -68,12 +68,17 @@ function App() {
     );
 
     function handleRegister(email, password) {
-        return auth.register(email, password).then(res => {
-            setMessageToolTip(toolTipMessage);
-            if (!res || res.statusCode === 400) {
+        return auth.register(email, password)
+            .then(res => {
+
+            if (!res || !res.ok) {
+                setMessageToolTip('Что-то пошло не так!Попробуйте ещё раз.');
                 setResRegistration(false);
-                throw new Error('что-то не так пошло')
-            } else {
+
+               //  throw new Error('что-то не так пошло')
+            }
+            if (res.userNoPassword){
+                setMessageToolTip('Вы успешно зарегистрировались!');
                 setResRegistration(true);
                 history.push('/signin')
             }
@@ -127,7 +132,7 @@ function App() {
     }
 
     function handleCardLike(card) {
-        const isLiked = card.likes.some(i => i._id === currentUser._id);
+        const isLiked = card.likes.some(i => i === currentUser._id);
         console.log(isLiked);
         console.log(card._id);
         api.changeLikeCardStatus(card._id, isLiked)

@@ -7,19 +7,20 @@ function Card(props) {
         props.onCardClick(props.dataCard);
     }
     const handleLikeClick = () => {
-        props.onCardLike(props.dataCard)
+        props.onCardLike(props.dataCard);
+        console.log(props.dataCard);
     }
     const handleDeleteClick = () => {
         props.onCardDelete(props.dataCard)
     }
 
-    const isOwn = props.dataCard.owner._id === user._id;
+    const isOwn = props.dataCard.owner === user._id;
 
     const cardDeleteButtonClassName = (
         `photo-grid__trash ${isOwn ? 'photo-grid__trash_visible' : 'photo-grid__trash_hidden'}`
     );
 
-    const isLiked = props.dataCard.likes.some(i => i._id === user._id);
+    const isLiked = props.dataCard.likes.some(i => i === user._id);
 
     const cardLikeButtonClassName = `photo-grid__like ${isLiked ? 'photo-grid__like_on' : 'photo-grid__like_off'}`;
 

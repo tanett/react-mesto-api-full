@@ -97,9 +97,7 @@ class Api {
             return Promise.reject(`Ошибка: ${res.status}`);
         })
     }
-    changeLikeCardStatus(cardID,hasLike) {
-        if (hasLike) {return this.likeOff(cardID)} else {return this.likeOn(cardID)}
-    }
+
 
     likeOn(cardID) {
         return fetch(`${this._baseUrl}/cards/${cardID}/likes`, {
@@ -125,6 +123,10 @@ class Api {
             }
             return Promise.reject(`Ошибка: ${res.status}`);
         })
+    }
+
+    changeLikeCardStatus(cardID,hasLike) {
+        if (hasLike) {return this.likeOff(cardID)} else {return this.likeOn(cardID)}
     }
 }
 
