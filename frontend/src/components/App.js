@@ -9,7 +9,7 @@ import Register from "./Register";
 import ImagePopup from "./ImagePopup";
 import React from 'react';
 import {
-    Switch, Route, useParams, Link, Redirect, useHistory
+    Switch, Route,  Redirect, useHistory
 } from "react-router-dom";
 
 import api from "../utils/api";
@@ -39,10 +39,7 @@ function App() {
         avatar: "",
         about: ""
     });
-    const toolTipMessage = {
-        success: 'Вы успешно зарегистрировались!',
-        failure: 'Что-то пошло не так!Попробуйте ещё раз.'
-    }
+
     const [cards, setCards] = React.useState([]);
     const [classPageLoad, setClassPageLoad] = React.useState('hidden');
     const [btnLoader, setBtnLoader] = React.useState('Сохранить');
@@ -59,7 +56,7 @@ function App() {
             handleTokenCheck();
             Promise.all([api.getInitialCards(), api.getUserInfo()]).then((data) => {
                 setCards(data[0]);
-                console.log(data[1]);
+
                 setCurrentUser(data[1].user)
             })
                 .catch(err => console.log(err))
@@ -98,7 +95,7 @@ function App() {
                 console.log(data);
                 if (!data.token) {
                     setMessageToolTip(data.message);
-                    console.log(messageToolTip);
+
                     setResRegistration(false);
                     setIsInfoTooltipOpen(true);
                     return  data;
@@ -112,7 +109,8 @@ function App() {
 
     function handleClickOut() {
         localStorage.removeItem('jwt');
-        setLoggedIn(false)
+        setLoggedIn(false);
+        setCards([])
     }
 
     function handleTokenCheck() {
@@ -120,7 +118,7 @@ function App() {
              const jwt = localStorage.getItem('jwt');
             auth.checkToken(jwt).then(
                  res => {
-                   console.log(res);
+
                     setUserEmail(res.user.email);
                     setLoggedIn(true);
                    history.push('/')
@@ -133,8 +131,8 @@ function App() {
 
     function handleCardLike(card) {
         const isLiked = card.likes.some(i => i === currentUser._id);
-        console.log(isLiked);
-        console.log(card._id);
+
+
         api.changeLikeCardStatus(card._id, isLiked)
             .then(newCard => {
                 console.log(newCard);

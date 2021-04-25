@@ -5,7 +5,7 @@ function InfoTooltip(props) {
     React.useEffect(() => {
         if (props.isOpen) {
             document.addEventListener("keydown", handleEscClose);
-            console.log(props.message);
+
         }
         return (() => {
             document.removeEventListener("keydown", handleEscClose)

@@ -1,7 +1,6 @@
 import React from "react";
-import { Link, useHistory } from 'react-router-dom';
-import { AUTH_URL, authorize} from "../utils/auth";
-import {CurrentUserContext} from "../contexts/CurrentUserContext.js";
+import { useHistory } from 'react-router-dom';
+
 
 function Login(props) {
     const [userEmail, setUserEmail] = React.useState('');
@@ -20,7 +19,7 @@ function Login(props) {
         e.preventDefault();
         if(!userEmail || !password) {return}
         props.isLogin(userEmail,password).then(data=>{
-            console.log(data);
+
 
             if(data.token){
                 setUserEmail('');

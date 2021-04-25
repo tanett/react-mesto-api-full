@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from 'react-router-dom';
 
-import {CurrentUserContext} from "../contexts/CurrentUserContext.js";
+
 
 function Register(props) {
     const [email, setEmail] = React.useState('');
