@@ -1,14 +1,16 @@
 # Проект Mesto фронтенд + бэкенд
 
-## Директории
+## Ссылки
+- 178.154.233.227  - IP
+- mesto.full.nomoredomains.monster - фронтенд
+- api.mesto.full.nomoredomains.icu - бэкэнд
 
-/controllers
-/errors
-/middlewares
-/routes
-/models
+
 
 ## Запуск проекта
 
 `npm run start` — запускает сервер   
 `npm run dev` — запускает сервер с hot-reload
+
+## Сборка фронта
+`npm run build`
