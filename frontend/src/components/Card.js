@@ -4,7 +4,11 @@ import {CurrentUserContext} from "../contexts/CurrentUserContext.js";
 function Card(props) {
     const user = React.useContext(CurrentUserContext);
 
-    const isOwn = props.dataCard.owner === user._id;
+    const isOwn = props.dataCard.owner._id === user._id;
+
+    const cardDeleteButtonClassName = (
+        `photo-grid__trash ${isOwn ? 'photo-grid__trash_visible' : 'photo-grid__trash_hidden'}`
+    );
 
     const handleClick = () => {
         props.onCardClick(props.dataCard);
@@ -16,12 +20,6 @@ function Card(props) {
     const handleDeleteClick = () => {
         props.onCardDelete(props.dataCard)
     }
-
-
-
-    const cardDeleteButtonClassName = (
-        `photo-grid__trash ${isOwn ? 'photo-grid__trash_visible' : 'photo-grid__trash_hidden'}`
-    );
 
     const isLiked = props.dataCard.likes.some(i => i === user._id);
 
