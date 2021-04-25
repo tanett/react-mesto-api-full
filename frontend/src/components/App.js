@@ -97,7 +97,7 @@ function App() {
             .then(data => {
                 console.log(data);
                 if (!data.token) {
-                    setMessageToolTip({failure:data.message});
+                    setMessageToolTip(data.message);
                     console.log(messageToolTip);
                     setResRegistration(false);
                     setIsInfoTooltipOpen(true);
