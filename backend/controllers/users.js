@@ -55,32 +55,14 @@ const getUser = (req, res, next) => {
       }
       next(err);
     });
-
-  // .orFail(() => new Error('Пользователь не найден'))
-  // .then((user) => {
-  //   res.send(user);
-  // })
-  // .catch((err) => {
-  //   if (err.name === 'CastError') {
-  //     res.status(400).send({ message: 'Невалидные данные' });
-  //   } else if (err.message === '') {
-  //     res.status(404).send({ message: 'Пользователь не найден' });
-  //   } else {
-  //     res.status(500).send({ message: 'Произошла ошибка' });
-  //   }
-  // });
 };
 
 const createUser = (req, res, next) => {
-  // User.findOne({email: req.body.email})
-  //   .then(user=> {
-  //     if(user){
-  //       throw new Error({message:'Такой емайл уже зарегестрирован', statusCode: 409})
-  //     }
-  //   })
-  //   .catch(err =>next(err));
   bcrypt.hash(req.body.password, 10)
     .then((hash) => User.create({
+      name: req.body.name,
+      about: req.body.about,
+      avatar: req.body.avatar,
       email: req.body.email,
       password: hash,
     }))
