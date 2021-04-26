@@ -8,6 +8,7 @@ const { createUser, login } = require('./controllers/users');
 const router = require('./routes/routes');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const NotFoundError = require('./errors/not-found-err');
 
 const { PORT = 3000 } = process.env;
 
@@ -53,6 +54,10 @@ app.use(router);
 
 app.use(errorLogger);
 /* eslint-disable  no-unused-vars */
+
+app.use('*', (err, req, res, next) => {
+  next(new NotFoundError('Страница не найдена'));
+});
 
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
