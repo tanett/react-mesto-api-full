@@ -54,6 +54,7 @@ function App() {
     React.useEffect(() => {
             setClassPageLoad('hidden');
             handleTokenCheck();
+
             Promise.all([api.getInitialCards(), api.getUserInfo()]).then((data) => {
                 setCards(data[0]);
 
@@ -61,7 +62,7 @@ function App() {
             })
                 .catch(err => console.log(err))
                 .finally(() => setClassPageLoad('visible'))
-        }, []
+        }, [userEmail, loggedIn]
     );
 
     function handleRegister(email, password) {
@@ -92,7 +93,7 @@ function App() {
     function handleLogin(login, password) {
         return auth.authorize(login, password)
             .then(data => {
-                console.log(data);
+
                 if (!data.token) {
                     setMessageToolTip(data.message);
 
@@ -135,7 +136,7 @@ function App() {
 
         api.changeLikeCardStatus(card._id, isLiked)
             .then(newCard => {
-                console.log(newCard);
+
                 const newCards = cards.map((c) => c._id === card._id ? newCard : c);
                 setCards(newCards);
             }).catch((err) => console.log(err));

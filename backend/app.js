@@ -67,11 +67,8 @@ app.use(errorLogger);
 /* eslint-disable  no-unused-vars */
 
 app.use('*', (req, res, next) => {
-  Promise.reject(new Error({ message: 'Страница не найдена' }))
-    .catch((err) => {
-      console.log(err);
-      next(new NotFoundError('Страница не найдена'));
-    });
+  Promise.reject(new NotFoundError('Страница не найдена'))
+    .catch(next);
 });
 
 app.use(errors()); // обработчик ошибок celebrate
