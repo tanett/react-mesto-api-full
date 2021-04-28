@@ -3,7 +3,9 @@
 ## Ссылка на Яндекс.Облако
 
 - http://mesto.full.nomoredomains.monster 
-- https://mesto.full.nomoredomains.monster
+
+IP
+- 178.154.233.227
 
 api
 - api.mesto.full.nomoredomains.icu

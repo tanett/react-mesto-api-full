@@ -3,13 +3,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { errors, celebrate, Joi } = require('celebrate');
+const isUrl = require('validator/lib/isURL');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { createUser, login } = require('./controllers/users');
 const router = require('./routes/routes');
-const auth = require('./middlewares/auth');
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const NotFoundError = require('./errors/not-found-err');
 
 const { PORT = 3000 } = process.env;
 
@@ -50,27 +50,30 @@ app.get('/crash-test', () => {
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required(),
-    password: Joi.string().required().min(4).max(30),
+    password: Joi.string().required().min(4),
   }),
 }), login);
 app.post('/signup', celebrate({
   body: Joi.object().keys({
+    name: Joi.string().min(2).max(30),
+    about: Joi.string().min(2).max(30),
+    avatar: Joi.string().custom((value, helper) => {
+      if (isUrl(value, { require_protocol: true })) {
+        return value;
+      }
+      return helper.message('Некорректный адрес изображения');
+    }),
     email: Joi.string().email().required(),
-    password: Joi.string().required().min(4).max(30),
+    password: Joi.string().required().min(4),
   }),
 }), createUser);
 
-app.use(auth);
+// app.use(auth);
 app.use(router);
 
 app.use(errorLogger);
+
 /* eslint-disable  no-unused-vars */
-
-app.use('*', (req, res, next) => {
-  Promise.reject(new NotFoundError('Страница не найдена'))
-    .catch(next);
-});
-
 app.use(errors()); // обработчик ошибок celebrate
 
 app.use((err, req, res, next) => {
