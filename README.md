@@ -1,18 +1,8 @@
 # Проект Mesto фронтенд + бэкенд
 
-## Ссылка на Яндекс.Облако
+Был размещен на яндекс.облаке, на данный момент меняет прописку
 
-- http://mesto.full.nomoredomains.monster 
-
-IP
-- 178.154.208.202
-
-api
-- api.mesto.full.nomoredomains.icu
-
-
-
-## Запуск проекта
+## Запуск проекта фронтенд
 
 `npm run start` — запускает сервер   
 `npm run dev` — запускает сервер с hot-reload
